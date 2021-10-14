@@ -1,18 +1,20 @@
 version: '3'
 
 services:
-  web:
-    image: 'gitlab/gitlab-ce:latest'
-    restart: always
-    hostname: 'version-control.home'
+  version-control:
+    container_name: version-control
+    image: version-control
+    restart: unless-stopped
+    hostname: $HOSTNAME
     environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'https://version-control.home'
+      #GITLAB_OMNIBUS_CONFIG: |
+        #external_url 'https://$HOSTNAME'
+        #gitlab_rails['gitlab_shell_ssh_port'] = 5022
         # Add any other gitlab.rb configuration here, each on its own line
     ports:
-      - '80:80'
-      - '443:443'
-      - '22:22'
+      - '5080:80'
+      - '5443:443'
+      - '5022:22'
     volumes:
       - './config:/etc/gitlab'
       - './logs:/var/log/gitlab'
