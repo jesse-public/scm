@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script was pulled from https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
 

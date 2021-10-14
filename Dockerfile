@@ -6,7 +6,7 @@ RUN apt update && \
 
 COPY ./add-repo.sh /add-repo.sh
 
-RUN /add-package-repo.sh
+RUN /add-repo.sh
 
 ENV EXTERNAL_URL "$EXTERNAL_URL"
 
