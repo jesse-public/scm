@@ -5,10 +5,10 @@ services:
     container_name: version-control
     image: version-control
     restart: unless-stopped
-    hostname: $HOSTNAME
+    hostname: $HOST
     environment:
       #GITLAB_OMNIBUS_CONFIG: |
-        #external_url 'https://$HOSTNAME'
+        #external_url '$EXTERNAL_URL'
         #gitlab_rails['gitlab_shell_ssh_port'] = 5022
         # Add any other gitlab.rb configuration here, each on its own line
     ports:

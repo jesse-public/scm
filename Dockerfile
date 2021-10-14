@@ -1,4 +1,4 @@
-FROM 'debian'
+FROM "debian:10"
 
 RUN apt update && \
   apt upgrade -y && \
@@ -8,10 +8,10 @@ COPY ./add-repo.sh /add-repo.sh
 
 RUN /add-repo.sh
 
-ENV EXTERNAL_URL "$EXTERNAL_URL"
+ARG EXTERNAL_URL "$EXTERNAL_URL"
 
 RUN echo "EXTERNAL_URL is set to: $EXTERNAL_URL"
-RUN apt install gitlab-ce
+RUN apt install -y gitlab-ce
 
 # Initial password stored in /etc/gitlab/initial_root_password
 
