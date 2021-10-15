@@ -1,21 +1,20 @@
 version: '3'
 
 services:
-  version-control:
-    container_name: version-control
-    image: version-control
-    restart: unless-stopped
-    hostname: $HOST
+  web:
+    image: 'version-control-gitlab'
+    container_name: 'version-control-gitlab'
+    restart: always
+    hostname: $HOSTNAME
     environment:
-      #GITLAB_OMNIBUS_CONFIG: |
-        #external_url '$EXTERNAL_URL'
-        #gitlab_rails['gitlab_shell_ssh_port'] = 5022
-        # Add any other gitlab.rb configuration here, each on its own line
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url '$HOST_URL'
+        letsencrypt['enable'] = false
     ports:
-      - '5080:80'
-      - '5443:443'
-      - '5022:22'
+      - '${HOST_IP}:8080:80'
+      - '${HOST_IP}:8443:443'
+      - '${HOST_IP}:8022:22'
     volumes:
-      - './config:/etc/gitlab'
-      - './logs:/var/log/gitlab'
-      - './data:/var/opt/gitlab'
+      - './volumes/config:/etc/gitlab'
+      - './volumes/logs:/var/log/gitlab'
+      - './volumes/gitlab/data:/var/opt/gitlab'
