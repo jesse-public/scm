@@ -1,3 +1,7 @@
 docker-compose.yml
 .env
 omnibus-gitlab
+volumes/config
+volumes/gitlab
+volumes/logs
+volumes/config/ssl/!.example
