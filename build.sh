@@ -26,7 +26,7 @@ sed -i 's/\-recommends/\-recommends libatomic1/' Dockerfile
 # debian has /etc/os-release instead of /etc/lsb-release
 sed -i 's/lsb-release/os-release/' assets/setup
 
-docker build -t version-control-gitlab .
+docker build -t scm .
 
 cd ../..
 

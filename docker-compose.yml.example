@@ -2,8 +2,8 @@ version: '3'
 
 services:
   web:
-    image: 'version-control-gitlab'
-    container_name: 'version-control-gitlab'
+    image: scm
+    container_name: scm
     restart: always
     hostname: $HOSTNAME
     environment:
