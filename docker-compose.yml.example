@@ -1,9 +1,18 @@
 version: '3'
 
+networks:
+  frontend:
+    driver: bridge
+  reverse-proxy-backend:
+    external: true
+
 services:
   web:
     image: scm
     container_name: scm
+    networks:
+      - frontend
+      - reverse-proxy-backend
     restart: always
     hostname: $HOSTNAME
     environment:
@@ -14,8 +23,8 @@ services:
         sidekiq['max_concurrency'] = 10
       # https://docs.gitlab.com/omnibus/settings/memory_constrained_envs.html
     ports:
-      - '${HOST_IP}:8080:80'
-      - '${HOST_IP}:8443:443'
+      #- '${HOST_IP}:8080:80'
+      #- '${HOST_IP}:8443:443'
       - '${HOST_IP}:8022:22'
     volumes:
       - './volumes/config:/etc/gitlab'
